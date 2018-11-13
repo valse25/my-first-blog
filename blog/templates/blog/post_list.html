@@ -1,20 +1,31 @@
+{% load static %}
 <html>
     <head>
         <title>Django Блог</title>
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
         <div>
             <h1><a href="/">Django Блог</a></h1>
         </div>
-
-{% for post in posts %}
-    <div>
-        <p>Опубликовано: {{ post.published_date }}</p>
-        <h1><a href="">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
-{% endfor %}
+		{% for post in posts %}
+			<div class="content container">
+				<div class="row">
+					<div class="col-md-8">
+						{% for post in posts %}
+							<div class="post">
+								<div class="date">
+									<p>Опубликовано: {{ post.published_date }}</p>
+								</div>
+								<h1><a href="">{{ post.title }}</a></h1>
+								<p>{{ post.text|linebreaksbr }}</p>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		{% endfor %}
     </body>
 </html>
